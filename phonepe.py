@@ -17,7 +17,7 @@ cnx = mysql.connector.connect(user=st.secrets["user"], password=st.secrets["pass
 
 cursor = cnx.cursor()
 
-query = "SELECT * FROM Aggregated_Transaction_Table"
+query = "SELECT * FROM Aggregated_transaction_data"
 cursor.execute(query)
 
 data = cursor.fetchall()
