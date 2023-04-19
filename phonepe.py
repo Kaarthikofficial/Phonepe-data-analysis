@@ -13,11 +13,11 @@ st.set_page_config(layout='wide')
 
 # AWS RDS MySQL instance configuration
 config = {
-    'user': st.secrets["my_credentials"]["username"],
-    'password': st.secrets["my_credentials"]["password"],
-    'host': st.secrets["my_credentials"]["host"],
+    'user': st.secrets["username"],
+    'password': st.secrets["password"],
+    'host': st.secrets["host"],
     'port': 3306,
-    'database': st.secrets["my_credentials"]["database"]
+    'database': st.secrets["database"]
 }
 
 # Connect to the AWS RDS MySQL instance

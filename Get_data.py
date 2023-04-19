@@ -302,6 +302,6 @@ engine = create_engine(connection_string)
 # Map_user_data.to_sql(name='Map_user_data', con=engine, if_exists='replace', index=False)
 # Top_transaction_districts.to_sql(name='Top_transaction_districts', con=engine, if_exists='replace', index=False)
 # Top_transaction_areas.to_sql(name='Top_transaction_areas', con=engine, if_exists='replace', index=False)
-Top_user_districts.to_sql(name='Top_user_districts', con=engine, if_exists='replace', index=False)
-Top_user_areas.to_sql(name='Top_user_areas', con=engine, if_exists='replace', index=False)
+# Top_user_districts.to_sql(name='Top_user_districts', con=engine, if_exists='replace', index=False)
+# Top_user_areas.to_sql(name='Top_user_areas', con=engine, if_exists='replace', index=False)
 
