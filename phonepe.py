@@ -11,20 +11,19 @@ warnings.filterwarnings('ignore', category=DeprecationWarning)
 st.set_page_config(layout='wide')
 
 
-# AWS RDS MySQL instance configuration
-config = {
-    'user': st.secrets["username"],
-    'password': st.secrets["password"],
-    'host': st.secrets["host"],
-    'port': 3306,
-    'database': st.secrets["database"]
-}
-
 # Connect to the AWS RDS MySQL instance
-cnx = mysql.connector.connect(**config)
+cnx = mysql.connector.connect(user=st.secrets["username"], password=st.secrets["password"],
+                              host=st.secrets["host"], port=3306, database=st.secrets["database"])
+
+cursor = cnx.cursor()
+
+query = "SELECT * FROM table_name"
+cursor.execute(query)
+
+data = cursor.fetchall()
 
 # Read a table as a dataframe
-Aggregated_Transaction = pd.read_sql('SELECT * FROM Aggregated_Transaction_Table', con=cnx)
+Aggregated_Transaction = pd.DataFrame(data, columns=[i[0] for i in cursor.description])
 # print(Aggregated_Transaction.info())
 # Aggregated_Transaction = pd.read_csv('phonepe data/Aggregated_Transaction_Table.csv')
 Aggregated_User_Summary = pd.read_csv('phonepe data/Aggregated_User_Table.csv')
