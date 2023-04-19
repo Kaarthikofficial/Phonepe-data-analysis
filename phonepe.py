@@ -5,6 +5,7 @@ import streamlit as st
 import warnings
 import plotly.graph_objects as go
 import os
+import setuptools
 import mysql.connector
 from plotly.subplots import make_subplots
 warnings.filterwarnings('ignore', category=DeprecationWarning)
