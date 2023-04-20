@@ -1,16 +1,12 @@
 import pandas as pd
-import string
 import plotly.express as px
 import streamlit as st
 import warnings
 import plotly.graph_objects as go
-import os
-import setuptools
 import mysql.connector
 from plotly.subplots import make_subplots
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 st.set_page_config(layout='wide')
-
 
 # Connect to the AWS RDS MySQL instance
 cnx = mysql.connector.connect(user=st.secrets["user"], password=st.secrets["password"],
@@ -55,8 +51,8 @@ Transaction_Table['F_State'] = Transaction_Table['F_State'].str.replace(' Island
 Transaction_data = Transaction_Table.loc[(Transaction_Table['Year'] == Year) &
                                          (Transaction_Table['Quarter'] == Quarter)].copy()
 
-Transaction_df = Transaction_data.groupby(['Year', 'Quarter', 'F_State'])[['Total_Transactions_count', 'Total_Amount']].\
-    sum()
+Transaction_df = Transaction_data.groupby(['Year', 'Quarter',
+                                           'F_State'])[['Total_Transactions_count', 'Total_Amount']].sum()
 Transaction_df = Transaction_df.rename(columns={'Total_Transactions_count': 'Total_Transactions_count',
                                                 'Total_Amount': 'Total_Amount'})
 
