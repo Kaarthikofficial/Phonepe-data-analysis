@@ -164,8 +164,8 @@ with t2:
         fig_br.update_layout(height=500, width=500, title_text="Transaction Performance by districts")
         st.plotly_chart(fig_br)
 
-Average_transaction = pd.DataFrame(Aggregated_Transaction['Total_Amount'].values/Aggregated_Transaction[
-    'Total_Transactions'].values, columns=['Avg_transaction'])
+Average_transaction = pd.DataFrame(Aggregated_Transaction['Total_Amount'].values /
+                                   Aggregated_Transaction['Total_Transactions'].values, columns=['Avg_transaction'])
 Aggregated_Transaction['Avg_transaction'] = Average_transaction['Avg_transaction'].values
 Aggregated_Transaction['Year_quarter'] = Aggregated_Transaction['Year'].astype(str) + '-Q' + \
                                          Aggregated_Transaction['Quarter'].astype(str)
