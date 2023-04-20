@@ -242,8 +242,7 @@ with t4:
     with c14:
         year_quarter = ['2021-Q1', '2021-Q2', '2021-Q3', '2021-Q4', '2022-Q1', '2022-Q2']
         Transaction_year_df = Aggregated_Transaction.loc[(Aggregated_Transaction['Year_quarter'].isin(year_quarter)) &
-                                                         (Aggregated_Transaction[
-                                                              'Payment_Mode'] == Payment_mode)].copy()
+                                                         (Aggregated_Transaction['Payment Mode'] == Payment_mode)].copy()
         transaction = Transaction_year_df.groupby(['Payment Mode', 'Year_quarter'])['Total Amount'].sum(). \
             reset_index(name='Amount')
 
