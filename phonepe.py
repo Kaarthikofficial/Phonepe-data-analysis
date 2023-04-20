@@ -192,8 +192,8 @@ with t3:
                            yaxis=dict(title='Total_transactions'), width=300, height=500)
 
         fig = go.Figure(layout=layout)
-        fig.add_trace(go.Bar(x=Aggregated_Transaction_df['Payment_Mode'],
-                             y=Aggregated_Transaction_df['Total_Transactions'],
+        fig.add_trace(go.Bar(x=Aggregated_Transaction_df['Payment Mode'],
+                             y=Aggregated_Transaction_df['Total Transactions'],
                              marker=dict(line=dict(width=1)), textposition='outside', name='Volume'))
         fig.update_xaxes(showgrid=False)
         fig.update_yaxes(showgrid=False)
@@ -204,8 +204,8 @@ with t3:
                            yaxis=dict(title='Total_transactions'), width=300, height=500)
 
         fig = go.Figure(layout=layout)
-        fig.add_trace(go.Bar(x=Aggregated_Transaction_df['Payment_Mode'],
-                             y=Aggregated_Transaction_df['Total_Amount'],
+        fig.add_trace(go.Bar(x=Aggregated_Transaction_df['Payment Mode'],
+                             y=Aggregated_Transaction_df['Total Amount'],
                              marker=dict(line=dict(width=1)), textposition='outside', name='Amount'))
         fig.update_xaxes(showgrid=False)
         fig.update_yaxes(showgrid=False)
@@ -213,18 +213,18 @@ with t3:
         st.plotly_chart(fig)
     with c12:
         layout = go.Layout(title='Avg_transaction_amount')
-        fig = go.Figure(data=[go.Pie(labels=Aggregated_Transaction_df['Payment_Mode'],
+        fig = go.Figure(data=[go.Pie(labels=Aggregated_Transaction_df['Payment Mode'],
                                      values=Aggregated_Transaction_df['Avg_transaction'], hole=0.5)], layout=layout)
         st.plotly_chart(fig)
 with t4:
     c13, c14 = st.columns((2, 2))
-    Payment_mode = st.selectbox('Payment_mode', tuple(Aggregated_Transaction['Payment_Mode'].unique()), key=6)
+    Payment_mode = st.selectbox('Payment_mode', tuple(Aggregated_Transaction['Payment Mode'].unique()), key=6)
 
     with c13:
         year_quarter = ['2021-Q1', '2021-Q2', '2021-Q3', '2021-Q4', '2022-Q1', '2022-Q2']
         Transaction_year_df = Aggregated_Transaction.loc[(Aggregated_Transaction['Year_quarter'].isin(year_quarter)) &
-                                                         (Aggregated_Transaction['Payment_Mode'] == Payment_mode)].copy()
-        transaction = Transaction_year_df.groupby(['Payment_Mode', 'Year_quarter'])['Total_Transactions'].sum().\
+                                                         (Aggregated_Transaction['Payment Mode'] == Payment_mode)].copy()
+        transaction = Transaction_year_df.groupby(['Payment Mode', 'Year_quarter'])['Total Transactions'].sum().\
             reset_index(name='Transactions')
 
         layout = go.Layout(title='Total transaction volume', xaxis=dict(title='Year-quarter'),
@@ -244,7 +244,7 @@ with t4:
         Transaction_year_df = Aggregated_Transaction.loc[(Aggregated_Transaction['Year_quarter'].isin(year_quarter)) &
                                                          (Aggregated_Transaction[
                                                               'Payment_Mode'] == Payment_mode)].copy()
-        transaction = Transaction_year_df.groupby(['Payment_Mode', 'Year_quarter'])['Total_Amount'].sum(). \
+        transaction = Transaction_year_df.groupby(['Payment Mode', 'Year_quarter'])['Total Amount'].sum(). \
             reset_index(name='Amount')
 
         layout = go.Layout(title='Total transaction volume', xaxis=dict(title='Year-quarter'),
