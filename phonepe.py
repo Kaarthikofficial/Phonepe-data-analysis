@@ -39,6 +39,9 @@ def clean_text(text):
     return text
 
 
+col1, col2 = st.columns([3, 10])
+with col2:
+    st.title(':red[📱💸PhonePe Data Analysis📈]')
 c1, c2 = st.columns(2)
 
 with c1:
@@ -132,6 +135,7 @@ fig.update_layout(
 Top_states = State_Table.groupby('state')['Transactions'].sum().nlargest(5).reset_index(name='Top_transactions')
 Low_states = State_Table.groupby('state')['Transactions'].sum().nsmallest(5).reset_index(name='Low_transactions')
 
+st.write("### **:purple[Transaction Map]**")
 t1, t2 = st.tabs(["State wise", "District wise"])
 with t1:
     c3, c4 = st.columns((3, 2))
