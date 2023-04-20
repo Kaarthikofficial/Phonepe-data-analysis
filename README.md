@@ -20,3 +20,4 @@ This is created in overlapping of the choropleth map with district wise
 transaction using scatter geo. It will mainly gives a deep meaning of
 transaction development in various cities.
 
+
