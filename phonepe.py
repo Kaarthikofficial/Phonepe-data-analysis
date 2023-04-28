@@ -1,3 +1,4 @@
+# Import required libraries
 import pandas as pd
 import plotly.express as px
 import streamlit as st
@@ -31,6 +32,7 @@ User_Table = pd.read_csv('phonepe data/Map_user_Table.csv')
 State_Table = pd.read_csv('phonepe data/Longitude_Latitude_State_Table.csv')
 
 
+# Function to convert the text into required format
 def clean_text(text):
     # Remove punctuation and replace with space
     text = text.translate(str.maketrans('-', ' '))
@@ -39,6 +41,7 @@ def clean_text(text):
     return text
 
 
+# Creating columns for analysis and representation
 col1, col2 = st.columns([3, 10])
 with col2:
     st.title(':red[📱💸PhonePe Data Analysis📈]')
@@ -150,6 +153,7 @@ with t1:
         fig_br.update_layout(height=500, width=500, title_text="Transaction Performance by states")
         st.plotly_chart(fig_br)
 
+# Top performing districts
 Top_districts = Transaction_data.groupby('Place_Name')['Total_Transactions_count'].sum().nlargest(5).\
     reset_index(name='Top_transactions')
 Low_districts = Transaction_data.groupby('Place_Name')['Total_Transactions_count'].sum().nsmallest(5).\
@@ -174,7 +178,7 @@ Aggregated_Transaction['Avg_transaction'] = Average_transaction['Avg_transaction
 Aggregated_Transaction['Year_quarter'] = Aggregated_Transaction['Year'].astype(str) + '-Q' + \
                                          Aggregated_Transaction['Quarter'].astype(str)
 
-
+# Analysis of transactions
 t3, t4 = st.tabs(['Transactions by each state', 'Transactions during covid'])
 with t3:
     c7, c8, c9 = st.columns(3)
@@ -220,6 +224,7 @@ with t3:
         fig = go.Figure(data=[go.Pie(labels=Aggregated_Transaction_df['Payment Mode'],
                                      values=Aggregated_Transaction_df['Avg_transaction'], hole=0.5)], layout=layout)
         st.plotly_chart(fig)
+# Analysis of transactions based on payment mode
 with t4:
     c13, c14 = st.columns((2, 2))
     Payment_mode = st.selectbox('Payment_mode', tuple(Aggregated_Transaction['Payment Mode'].unique()), key=6)
@@ -273,6 +278,7 @@ with c15:
 with c16:
     Quarter = st.selectbox('Quarter', (1, 2, 3, 4), key=8)
 
+# User analysis by states
 t5, t6 = st.tabs(['Registered Users by state', 'Registered Users by districts'])
 
 with t5:
@@ -333,6 +339,7 @@ with t5:
             )
         )
         st.plotly_chart(fig)
+# User analysis by districts
 with t6:
     c19, c20 = st.columns(2)
     with c19:
